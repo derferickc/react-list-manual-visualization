@@ -43,7 +43,7 @@ class Listview extends Component {
 
     const startIndex = Math.floor(scrollTop / rowHeight);
     const endIndex = Math.min(
-      startIndex + Math.ceil(this.state.availableHeight / rowHeight) + 10,
+      startIndex + Math.ceil(this.state.availableHeight / rowHeight) + 1,
       numRows
     );
 
@@ -65,7 +65,9 @@ class Listview extends Component {
         ref={node => (this.node = node)}
       >
 
-        <div style={{
+        <div
+          className="listview-inner"
+          style={{
             height: totalHeights,
             paddingTop: startIndex * rowHeight
           }}>
