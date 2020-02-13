@@ -41,16 +41,16 @@ class Listview extends Component {
     const { rowHeight, numRows } = this.props
     const totalHeights = rowHeight * numRows
 
-    const startIndex = Math.floor(this.state.scrollTop / rowHeight);
+    const startIndex = Math.floor(scrollTop / rowHeight);
     const endIndex = Math.min(
-      startIndex + Math.ceil(this.state.availableHeight / rowHeight) + 1,
+      startIndex + Math.ceil(this.state.availableHeight / rowHeight) + 10,
       numRows
     );
 
     const items = []
 
     let index = startIndex
-    while (index < numRows) {
+    while (index < endIndex) {
       items.push(
       <li key={index}>
         {this.renderRowAtIndex(index)}
@@ -64,6 +64,16 @@ class Listview extends Component {
         onScroll={this.handleScroll}
         ref={node => (this.node = node)}
       >
+
+        <div style={{
+            height: totalHeights,
+            paddingTop: startIndex * rowHeight
+          }}>
+          <ul>
+            {items}
+          </ul>
+        </div>
+
         <div className="info">
           <header>
             <div><strong className="heading-margin">Above is a large unordered list<br />of elements rendered to the UI</strong></div>
@@ -84,12 +94,6 @@ class Listview extends Component {
           <div>
             <em>End Index:</em> {endIndex}
           </div>
-        </div>
-
-        <div>
-          <ul>
-            {items}
-          </ul>
         </div>
       </div>
     );

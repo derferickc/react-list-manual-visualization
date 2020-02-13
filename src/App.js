@@ -8,7 +8,7 @@ export default function App (props) {
     <div className="App">
       <section className="list-section">
         <Listview
-          numRows={500}
+          numRows={10000}
           rowHeight={25}
         />
       </section>
